@@ -13,11 +13,10 @@ class AdvancedReport
     self.params = params
     self.data = {}
     self.ruportdata = {}
-    search = Order.searchlogic(params[:search])
-    search.checkout_complete = true
-    search.state_does_not_equal('canceled')
+    search = Order.complete.state_does_not_equal('cancelled').searchlogic(params[:search])
+    search.conditions={:complete=>true}
 
-    self.orders = search.find(:all)
+    self.orders = search.do_search.all
 
     self.product_in_taxon = true
     if params[:advanced_reporting]

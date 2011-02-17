@@ -12,7 +12,7 @@ class AdvancedReport::IncrementReport < AdvancedReport
     self.dates = {
       :daily => {
         :date_hash => "%F",
-        :date_display => "%a %d-%m-%Y",
+        :date_display => "%m-%d-%Y",
         :header_display => 'Daily',
         :timestamp => "%Y-%m-%d"
       },
