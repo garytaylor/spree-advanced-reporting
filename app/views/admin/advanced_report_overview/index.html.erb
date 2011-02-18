@@ -19,7 +19,7 @@
     <td width="33%">
       <h3>Top Customers by Revenue</h3>
       <div id="top_customers">
-      <%= @top_customers_report.ruportdata.to_html %>
+      <%= raw(@top_customers_report.ruportdata.to_html) %>
       </div>
     </td>
     <td width="33%">

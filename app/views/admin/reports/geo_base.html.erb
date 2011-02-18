@@ -1,7 +1,7 @@
 <% [:state, :country].each do |type| -%>
 <div id="<%= type.to_s %>_data" <%= 'style="display:none;"' if type != :state %> class="advanced_reporting_data">
   <div id="<%= type.to_s %>_canvas" class="canvas"></div>
-  <%= @report.ruportdata[type].to_html %>
+  <%= raw(@report.ruportdata[type].to_html) %>
 </div>
 <% end -%>
 

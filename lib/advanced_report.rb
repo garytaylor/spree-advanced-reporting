@@ -13,10 +13,13 @@ class AdvancedReport
     self.params = params
     self.data = {}
     self.ruportdata = {}
-    search = Order.complete.state_does_not_equal('cancelled').searchlogic(params[:search])
-    search.conditions={:complete=>true}
+    scope=Order.complete
+    scope=scope.where("completed_at between ? and ?",params[:search][:created_at_after].to_date,params[:search][:created_at_before].to_date) if params[:search] and params[:search][:created_at_before] and params[:search][:created_at_before].present?
+    scope=scope.where('state!=?','cancelled')
+    
 
-    self.orders = search.do_search.all
+    self.orders = scope.all
+
 
     self.product_in_taxon = true
     if params[:advanced_reporting]
@@ -32,10 +35,10 @@ class AdvancedReport
     end
 
     if self.product
-      self.product_text = "Product: #{self.product.name}<br />"
+      self.product_text = "Product: #{self.product.name}"
     end
     if self.taxon
-      self.taxon_text = "Taxon: #{self.taxon.name}<br />"
+      self.taxon_text = "Taxon: #{self.taxon.name}"
     end
     self.date_text = "Date Range:"
     if params[:search]

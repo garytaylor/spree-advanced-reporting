@@ -5,7 +5,7 @@
 <% end %>
 </select>
 <div id="advanced_report_search">
-  <% form_for :search do |s| %>
+  <% form_for :search, :html=>{:method=>:get} do |s| %>
     <% if @stores -%>
       Store:<br /><%= collection_select(:search, :store_id, @stores, :id, :name, { :include_blank => 'All' } ) %><br />
     <% end -%>
