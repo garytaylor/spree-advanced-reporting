@@ -37,6 +37,7 @@ module AdvancedReporting::ReportsController
     params[:advanced_reporting] ||= {}
     params[:advanced_reporting]["report_type"] = params[:advanced_reporting]["report_type"].to_sym if params[:advanced_reporting]["report_type"]
     params[:advanced_reporting]["report_type"] ||= :state
+    params[:advanced_reporting]["report_type"]=:state if params[:advanced_reporting]["report_type"].to_s=='zip'
     respond_to do |format|
       format.html { render :template => "admin/reports/geo_base" }
       format.pdf do
