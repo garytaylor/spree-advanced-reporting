@@ -14,6 +14,7 @@ Rails.application.routes.draw do
           get :geo_revenue
           get :geo_units
           get :geo_profit
+          get :zip_units
         end
       end
 

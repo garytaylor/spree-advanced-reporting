@@ -3,7 +3,7 @@ module AdvancedReporting::ReportsController
     target.class_eval do
       alias :spree_index :index
       def index; advanced_reporting_index; end
-      before_filter :basic_report_setup, :actions => [:profit, :revenue, :units, :top_products, :top_customers, :geo_revenue, :geo_units, :count]
+      before_filter :basic_report_setup, :actions => [:profit, :revenue, :units, :top_products, :top_customers, :geo_revenue, :geo_units, :zip_units, :count]
     end 
   end
 
@@ -17,6 +17,7 @@ module AdvancedReporting::ReportsController
       :geo_revenue	=> { :name => "Geo Revenue", :description => "Geo Revenue" },
       :geo_units	=> { :name => "Geo Units", :description => "Geo Units" },
       :geo_profit	=> { :name => "Geo Profit", :description => "Geo Profit" },
+      :zip_units => { :name => "Zip Units", :description => "Zip Units"}
   }
 
   def advanced_reporting_index
@@ -132,5 +133,9 @@ module AdvancedReporting::ReportsController
   def geo_profit
     @report = AdvancedReport::GeoReport::GeoProfit.new(params)
     geo_report_render("geo_profit")
+  end
+  def zip_units
+    @report = AdvancedReport::GeoReport::ZipUnits.new(params)
+    geo_report_render("zip_units")
   end
 end

@@ -19,6 +19,11 @@
     <a href="<%= @report.download_url(request.request_uri, 'pdf', "state") %>">PDF</a> |
     <a href="<%= @report.download_url(request.request_uri, 'csv', "state") %>">CSV</a>
   </li>
+  <li id="zip">
+    <label>Zip Codes</label><br />
+    <a href="<%= @report.download_url(request.request_uri, 'pdf', "zip") %>">PDF</a> |
+    <a href="<%= @report.download_url(request.request_uri, 'csv', "zip") %>">CSV</a>
+  </li>
   <li id="country">
     <label>Countries</label><br />
     <a href="<%= @report.download_url(request.request_uri, 'pdf', "country") %>">PDF</a> |
