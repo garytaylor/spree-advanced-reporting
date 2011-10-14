@@ -7,8 +7,8 @@ class Admin::AdvancedReportOverviewController < Admin::BaseController
       @stores = Store.all
     end
     @report = AdvancedReport::IncrementReport::Revenue.new({ :search => {} })
-    @top_products_report = AdvancedReport::TopReport::TopProducts.new({ :search => {} }, 5)
-    @top_customers_report = AdvancedReport::TopReport::TopCustomers.new({ :search => {} }, 5)
+    @top_products_report = AdvancedReport::TopReport::TopProducts.new({ :search => {} }, 20)
+    @top_customers_report = AdvancedReport::TopReport::TopCustomers.new({ :search => {} }, 20)
     @top_customers_report.ruportdata.remove_column("Units")
 
     # From overview_dashboard, Cleanup eventually
