@@ -1,6 +1,6 @@
 class AdvancedReport::GeoReport::ZipUnits < AdvancedReport::GeoReport
   def name
-    "Units Sold by Zip Code (First 4 Digits)"
+    "Units Sold by Zip Code (First 2 Digits)"
   end
 
   def column
@@ -18,7 +18,7 @@ class AdvancedReport::GeoReport::ZipUnits < AdvancedReport::GeoReport
     orders.each do |order|
       units = units(order)
       if order.bill_address and order.bill_address.zipcode
-        zip=order.bill_address.zipcode.upcase.strip[0..2]
+        zip=order.bill_address.zipcode.upcase.strip[0..1]
         data[:state][zip] ||= {
           :name => zip,
           :units => 0
