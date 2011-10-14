@@ -38,7 +38,7 @@ class AdvancedReport::GeoReport::GeoProfit < AdvancedReport::GeoReport
       data[type].each { |k, v| ruportdata[type] << { "location" => v[:name], "Profit" => v[:profit] } }
       ruportdata[type].sort_rows_by!(["location"])
       ruportdata[type].rename_column("location", type.to_s.capitalize)
-      ruportdata[type].replace_column("Profit") { |r| "$%0.2f" % r.Profit }
+      ruportdata[type].replace_column("Profit") { |r| "£%0.2f" % r.Profit }
     end
   end
 end

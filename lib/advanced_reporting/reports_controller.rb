@@ -3,7 +3,7 @@ module AdvancedReporting::ReportsController
     target.class_eval do
       alias :spree_index :index
       def index; advanced_reporting_index; end
-      before_filter :basic_report_setup, :actions => [:profit, :revenue, :units, :top_products, :top_customers, :geo_revenue, :geo_units, :zip_units, :count]
+      before_filter :basic_report_setup, :actions => [:profit, :revenue, :units, :top_products, :all_products_sold,:top_customers, :geo_revenue, :geo_units, :zip_units, :count]
     end 
   end
 
@@ -13,6 +13,7 @@ module AdvancedReporting::ReportsController
       :profit		=> { :name => "Profit", :description => "Profit" },
       :count		=> { :name => "Order Count", :description => "Order Count" },
       :top_products	=> { :name => "Top Products", :description => "Top Products" },
+      :all_products_sold	=> { :name => "All Products Sold", :description => "All Products Sold" },
       :top_customers	=> { :name => "Top Customers", :description => "Top Customers" },
       :geo_revenue	=> { :name => "Geo Revenue", :description => "Geo Revenue" },
       :geo_units	=> { :name => "Geo Units", :description => "Geo Units" },
@@ -114,6 +115,11 @@ module AdvancedReporting::ReportsController
   def top_products
     @report = AdvancedReport::TopReport::TopProducts.new(params, 4)
     base_report_top_render("top_products")
+  end
+
+  def all_products_sold
+    @report = AdvancedReport::TopReport::AllProductsSold.new(params)
+    base_report_top_render("all_products_sold")
   end
 
   def top_customers

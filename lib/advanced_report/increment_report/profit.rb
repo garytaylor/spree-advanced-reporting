@@ -32,10 +32,10 @@ class AdvancedReport::IncrementReport::Profit < AdvancedReport::IncrementReport
 
     generate_ruport_data
 
-    INCREMENTS.each { |type| ruportdata[type].replace_column("Profit") { |r| "$%0.2f" % r["Profit"] } }
+    INCREMENTS.each { |type| ruportdata[type].replace_column("Profit") { |r| "£%0.2f" % r["Profit"] } }
   end
 
   def format_total
-    '$' + ((self.total*100).round.to_f / 100).to_s
+    '£' + ((self.total*100).round.to_f / 100).to_s
   end
 end

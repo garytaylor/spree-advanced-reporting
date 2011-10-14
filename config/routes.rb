@@ -10,6 +10,7 @@ Rails.application.routes.draw do
           get :profit
           get :count
           get :top_products
+          get :all_products_sold
           get :top_customers
           get :geo_revenue
           get :geo_units
