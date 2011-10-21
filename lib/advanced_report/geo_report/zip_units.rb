@@ -18,7 +18,7 @@ class AdvancedReport::GeoReport::ZipUnits < AdvancedReport::GeoReport
     orders.each do |order|
       units = units(order)
       if order.bill_address and order.bill_address.zipcode
-        zip=order.bill_address.zipcode.upcase.strip[0..1]
+        zip=order.bill_address.zipcode.upcase.strip[0..3]
         data[:state][zip] ||= {
           :name => zip,
           :units => 0
